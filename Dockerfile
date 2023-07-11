@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11-alpine
 
 RUN pip install requests && \
     pip install prometheus_client

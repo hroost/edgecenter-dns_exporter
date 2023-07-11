@@ -2,11 +2,11 @@ version: "2.1"
 
 services:
 
-  gcore-dns_exporter:
-    build: .
-    container_name: gcore-dns_exporter
+  edgecenter-dns_exporter:
+    image: hroost/edgecenter-dns_exporter:latest
+    container_name: edgecenter-dns_exporter
     ports:
       - "9886:9886"
     environment:
-      - GCORE_DNS_API_KEY=$(GCORE_DNS_API_KEY)
+      - EDGECENTER_DNS_API_KEY=$(EDGECENTER_DNS_API_KEY)
     restart: always
