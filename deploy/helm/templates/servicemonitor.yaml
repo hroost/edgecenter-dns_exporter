@@ -1,0 +1,16 @@
+{{- if .Values.serviceMonitor.create -}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "edgecenter-dns-exporter.fullname" . }}
+  labels:
+    {{- include "edgecenter-dns-exporter.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "edgecenter-dns-exporter.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: {{ .Values.service.port }}
+      path: /metrics
+      interval: {{ .Values.edgecenter.updateInterval }}s
+{{- end }}
